@@ -1,8 +1,99 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const helveticaNeueDisplay = localFont({
+  src: [
+    {
+      path: "./fonts/HelveticaNowDisplay-Thin.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-ExtLt.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-ExtraBold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-helvetica-display",
+});
+
+const helveticaNeueText = localFont({
+  src: [
+    {
+      path: "./fonts/HelveticaNowText-Thin.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-ExtraLight.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowText-ExtraBold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/HelveticaNowDisplay-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-helvetica-text",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +106,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${helveticaNeueText.variable} ${helveticaNeueDisplay.variable} font-text`}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
